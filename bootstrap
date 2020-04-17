@@ -1,0 +1,36 @@
+#!/bin/bash
+CMD_PATH=`dirname $0`
+cd $CMD_PATH
+echo 'Begin---------------------------'
+echo '提交到 blog'
+echo 'hexo clean:'
+hexo clean
+echo 'hexo generate:'
+hexo generate
+echo 'hexo deploy:'
+hexo deploy
+echo '备份到 Github'
+echo 'git add . :'
+git add .
+
+
+echo -n "Enter your commit Text(default is 'Common Update.'):  "
+read aComment
+
+# if 判断 https://billie66.github.io/TLCL/book/chap28.html
+if [ -z "$aComment" ]; then
+#赋值的操作 https://www.jianshu.com/p/24a5230460fd
+aComment="Common Update."
+fi
+
+echo "git commit -m $aComment"
+git commit -m "$aComment"
+
+#echo 'git commit -m "Common Update." :'
+#git commit -m "Common Update."
+
+
+echo 'git push:'
+git push
+echo 'Finish--------------------------'
+exit 0

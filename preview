@@ -1,0 +1,12 @@
+#!/bin/bash
+CMD_PATH=`dirname $0`
+cd $CMD_PATH
+echo 'Begin---------------------------'
+echo '在浏览器中预览效果'
+echo 'hexo clean:'
+hexo clean
+echo 'hexo generate:'
+hexo generate
+echo 'hexo server:'
+hexo server
+

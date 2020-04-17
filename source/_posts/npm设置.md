@@ -1,0 +1,62 @@
+---
+title: NodePackageManager(NPM) 的设置
+tags: [node]
+categories: [node]
+date: 2019-09-05 17:46:19
+---
+
+> 配置 npm 的源
+
+<!-- more -->
+
+
+## 1.参考
+* 1.[淘宝 NPM 镜像](https://npm.taobao.org)
+* 2.[npm 淘宝镜像配置](https://gist.github.com/52cik/c1de8926e20971f415dd)
+
+## 2.过程
+
+* 1.切换源(官方源 <-> 淘宝源)
+
+```
+# npm 官方源
+npm set registry https://registry.npmjs.org/
+
+# 淘宝源
+# 注册模块镜像
+npm set registry https://r.npm.taobao.org
+# 注册模块镜像
+npm set disturl https://npm.taobao.org/dist
+
+# 清空缓存
+npm cache clean --force
+
+
+```
+
+* 2.查看源
+
+```
+$ npm config list
+; cli configs
+metrics-registry = "https://r.npm.taobao.org/"
+scope = ""
+user-agent = "npm/6.9.0 node/v12.6.0 darwin x64"
+
+; userconfig /Users/glb_gz/.npmrc
+disturl = "https://npm.taobao.org/dist"
+registry = "https://r.npm.taobao.org/"
+
+; builtin config undefined
+prefix = "/usr/local"
+
+; node bin location = /usr/local/Cellar/node/12.6.0/bin/node
+; cwd = /Users/glb_gz/Documents/Angular_workplace/Github/ng-zorro-antd
+; HOME = /Users/glb_gz
+; "npm config ls -l" to show all defaults.
+```
+
+## 3.错误处理
+* 1.
+
+

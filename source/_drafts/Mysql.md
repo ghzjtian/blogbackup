@@ -1,0 +1,1 @@
+Mysql 备份:  mysqldump -uroot -p globeidentityusers>tempspace\globeidentityusers.sql
