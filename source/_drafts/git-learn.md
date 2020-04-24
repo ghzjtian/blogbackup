@@ -9,6 +9,9 @@ date: 2020-04-01 17:46:19
 
 <!-- more -->
 
+
+## 1.Git stash
+
 [1.Stash your changes before switching branch with Git](http://www.codeblocq.com/2016/02/Stash-your-changes-before-switching-branch/)
 
 #### 1.在 branch1 中做了修改，然后 stash the change , 然后修改文件 , 做完操作后再 stash 拿取刚刚的修改(几个 stash 之间的切换)(测试有conflict 与 没 conflict 的情况).
@@ -57,5 +60,5 @@ change 1.
 #### 4.在 branch1 中做了修改，然后 stash the change, 然后从 branch2 merge code to branch, 测试有 conflict 与没 conflict 的情况.
 
 
-
+## 2.Git 
 
