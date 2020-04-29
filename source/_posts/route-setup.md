@@ -1,11 +1,11 @@
 ---
-title: Mac 配置 Route
+title: 电脑配置 Route
 tags: [Mac]
 categories: [Mac]
 date: 2020-04-22 17:46:19
 ---
 
-> Mac 配置 Route
+> 电脑手动 配置 Route 的方法
 
 <!-- more -->
 
@@ -53,4 +53,19 @@ sudo route -n add -net 10.0.0.0/16 123.456.789.012
 sudo route -n delete 10/16  123.456.789.012
 ```
 
+#### 4.查看
 
+> 查看到达指定 IP 地址路由的情况
+
+* 1.Windows:
+
+```
+tracert 192.168.1.1
+```
+
+* 2.Mac
+
+```
+traceroute 192.168.1.1
+
+```
