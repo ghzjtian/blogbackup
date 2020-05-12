@@ -1,5 +1,5 @@
 ---
-title: Angular Style 和 文件结构
+title: Angular Style 
 tags: [Angular]
 categories: [Angular]
 date: 2020-04-30 17:46:19
@@ -7,9 +7,18 @@ date: 2020-04-30 17:46:19
 
 
 > Angular 编码风格与文件结构
+> 文章搬运工，只为个人参考之用.
 
 <!-- more -->
 
+## 1.参考
+## 2.编写易于阅读的代码
+## 3.高效的 Angular 程序编写
+## 4.属性的命名
+
+***
+***
+***
 
 ## 1.参考
 * 1.[风格指南](https://angular.cn/guide/styleguide#angular-coding-style-guide)
@@ -88,6 +97,74 @@ Type '"Other"' is not assignable to type '"First" | "Second"'
 (property) AppComponent.myValue: "First" | "Second"
 
 ```
+
+
+## 4.属性的命名
+* 1.Arrays
+
+```
+// great - "names" implies strings
+const fruitNames = ['apple', 'banana', 'cucumber'];
+
+// great
+const fruits = [{
+    name: 'apple',
+    genus: 'malus'
+}, {
+    name: 'banana',
+    genus: 'musa'
+}, {
+    name: 'cucumber',
+    genus: 'cucumis'
+}];
+```
+
+* 2.Booleans
+
+```
+// good
+const isOpen = true;
+const canWrite = true;
+const hasFruit = true;
+```
+
+```
+const checkHasFruit = (user, fruitName) => (
+    user.fruits.includes(fruitName)
+);
+
+const hasFruit = checkHasFruit(user, 'apple');
+
+```
+
+* 3.Numbers
+
+```
+// good
+const minPugs = 1;
+const maxPugs = 5;
+const totalPugs = 3;
+```
+
+* 4.Functions.` A good format to follow is actionResource. For example, getUser.`
+
+```
+// good
+getUser(userId);
+calculateTotal(items);
+// I like it!
+toDollars('euros', 20);
+toUppercase('a string');
+```
+
+```
+// good
+const newFruits = fruits.map(fruit => {
+    return doSomething(fruit);
+});
+```
+
+
 
 
 
