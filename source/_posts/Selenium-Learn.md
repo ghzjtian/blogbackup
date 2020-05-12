@@ -16,12 +16,14 @@ date: 2020-05-10 17:46:19
 ## 4. Run it on Chrome and Firefox Browsers
 ## 5.输出测试报告
 ## 6.示例代码
+## 7.其它插件
 
 
 ***
 
 ## 0.参考
 * 1.[https://www.selenium.dev/](https://www.selenium.dev/)
+* 2.[https://selenium-python.readthedocs.io/getting-started.html](https://selenium-python.readthedocs.io/getting-started.html)
 
 ## 1.Install Python3
 
@@ -84,26 +86,81 @@ Successfully installed selenium-3.141.0 urllib3-1.25.9
 * 2.`python3 文件名`
 
 ## 5.输出测试报告
+* 1.安装 `html-testRunner`
 
+```
+$ pip install html-testRunner
+```
+
+* 2.在文件中导入并使用 testRunner
+
+> 如下代码要在 terminal 中运行才会有测试报告生成 !!
+
+```
+import HtmlTestRunner
+
+
+if __name__ == '__main__':
+    test_report_path = '/Users/glb_gz/Documents/python_workplace/PythonSeleniumSessions/reports/'
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=test_report_path))
+
+```
 
 ## 6.示例代码
+
 ```
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support.expected_conditions import presence_of_element_located
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import unittest
+import HtmlTestRunner
+import time
 
-#This example requires Selenium WebDriver 3.13 or newer
-caps = DesiredCapabilities.FIREFOX
-caps["marionette"] = True
-caps["binary"] = "/Applications/Firefox.app/Contents/MacOS/firefox-bin"
-firefoxDriverPath = "/Users/glb_gz/Documents/python_workplace/PythonSeleniumSessions/drivers/geckodriver"
-with webdriver.Firefox(capabilities=caps, executable_path=firefoxDriverPath) as driver:
-    wait = WebDriverWait(driver, 10)
-    driver.get("https://www.baidu.com/")
-    driver.find_element(By.NAME, "wd").send_keys("cheese" + Keys.RETURN)
-    first_result = wait.until(presence_of_element_located((By.CSS_SELECTOR, "h3>a")))
-    print(first_result.get_attribute("textContent"))
+# Selenium Python: Sample Project
+# 1.   Create a test for Baidu Search
+# 2.   Add implicit wait of 10 sec
+# 3.   Maximize window
+# 4.   Create Unit Tests
+# 5.   Add HTML reporting library
+# 6.   Run from command line
+
+
+class GoogleSearch(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        chrome_exec_path = "/Users/glb_gz/Documents/python_workplace/PythonSeleniumSessions/drivers/chromedriver"
+        cls.driver = webdriver.Chrome(executable_path=chrome_exec_path)
+        cls.driver.implicitly_wait(10)
+        cls.driver.maximize_window()
+
+    def test_search_automationstepbystep(self):
+        self.driver.get("https://www.baidu.com/")
+        self.driver.find_element(By.NAME, "wd").send_keys("cheese" + Keys.RETURN)
+        time.sleep(5)
+
+    def test_search_raghav(self):
+        self.driver.get("https://www.baidu.com/")
+        self.driver.find_element(By.NAME, "wd").send_keys("Raghav Pal" + Keys.RETURN)
+        time.sleep(5)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.close()
+        cls.driver.quit()
+        print("Test completed.")
+
+
+if __name__ == '__main__':
+    test_report_path = '/Users/glb_gz/Documents/python_workplace/PythonSeleniumSessions/reports/'
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output=test_report_path))
+
+
 ```
+
+
+## 7.其它插件
+#### 1.pytest
+
+#### 2. Katalon recorder(Chrome Extensions)
+* 1.自动记录在浏览器上做的操作，然后生成代码.
