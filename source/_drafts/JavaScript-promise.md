@@ -75,8 +75,8 @@ Promise.resolve("Completed")
 
 /*  Output:
    'Completed'
-   'Completed Two'
-*/
+   'Completed Two'w
+*
 
 
 Promise.reject('Rejected')
