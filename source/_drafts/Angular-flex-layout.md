@@ -15,6 +15,7 @@ date: 2020-04-09 17:46:19
 * 2.[API-Documentation](https://github.com/angular/flex-layout/wiki/API-Documentation)
 * 3.[Layout-Demo](https://tburleson-layouts-demos.firebaseapp.com/#/responsive)
 * 4.[Responsive API<breakpoint 的解释>](https://github.com/angular/flex-layout/wiki/Responsive-API)
+* 5.[fxFlex](https://github.com/angular/flex-layout/wiki/fxFlex-API)
 
 ## 2.动态布局资料
 ```

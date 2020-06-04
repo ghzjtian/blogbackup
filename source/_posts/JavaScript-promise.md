@@ -12,7 +12,8 @@ date: 2020-05-12 17:46:19
 
 ## 1.参考
 * 1.[TypeScript Promises Examples](https://www.positronx.io/angular-8-es-6-typescript-promises-examples/)
-* 2.[使用 Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises#Promise_%E6%8B%92%E7%BB%9D%E4%BA%8B%E4%BB%B6)
+* 2.[MDN 使用 Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Using_promises#Promise_%E6%8B%92%E7%BB%9D%E4%BA%8B%E4%BB%B6)
+* 3.[MDN Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 * 3.[Master the JavaScript Interview: What is a Promise?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261)
 
 
@@ -34,6 +35,11 @@ function asyncAction() {
 asyncAction().then(
   () => console.log("Resolved!")
 );
+
+// Output
+Async is done!
+Resolved!
+
 ```
 
 * 2.Attaching Error Handler with Promise
@@ -56,6 +62,11 @@ asyncAction().then(function(success) {
    // error handler is called
    console.log(error); 
 });
+
+// Output
+Async is done!
+Rejected!
+
 ```
 
 * 2.Attach Multiple Then Handlers with Promise
@@ -75,7 +86,7 @@ Promise.resolve("Completed")
 
 /*  Output:
    'Completed'
-   'Completed Two'w
+   'Completed Two'
 *
 
 

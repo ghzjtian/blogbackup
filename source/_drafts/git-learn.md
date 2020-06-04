@@ -9,56 +9,71 @@ date: 2020-04-01 17:46:19
 
 <!-- more -->
 
+## 0.参考
+* 1.[Git scm](https://git-scm.com/)
+* 2.[git-stash用法小结](https://www.cnblogs.com/tocy/p/git-stash-reference.html)
+
+
 
 ## 1.Git stash
 
-[1.Stash your changes before switching branch with Git](http://www.codeblocq.com/2016/02/Stash-your-changes-before-switching-branch/)
-
-#### 1.在 branch1 中做了修改，然后 stash the change , 然后修改文件 , 做完操作后再 stash 拿取刚刚的修改(几个 stash 之间的切换)(测试有conflict 与 没 conflict 的情况).
-* 1.如果有 conflict, `git stash pop ` 无效, 并且报错
+#### 1.显示 Git Stash 列表
 
 ```
-$ git stash pop
-error: Your local changes to the following files would be overwritten by merge:
-	testgitstash/file1.txt
-Please commit your changes or stash them before you merge.
-Aborting
-```
-* 2.需要先 add ,然后再 `git stash pop`, 这样才不报错，但是 文件中有 conflict 的信息
-
-```
-$ git status
-On branch develop
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-	new file:   .DS_Store
-	modified:   testgitstash/file2.txt
-
-Unmerged paths:
-  (use "git reset HEAD <file>..." to unstage)
-  (use "git add <file>..." to mark resolution)
-
-	both modified:   testgitstash/file1.txt
+$ git stash list
+stash@{0}: On develop: ABC-613
+stash@{1}: On develop: Try to improve the network logic.
+stash@{2}: On develop: Add agm/core component.
 
 ```
 
-查看 `testgitstash/file1.txt ` 文件的内容，会发现有 conflict 的文本.
+#### 2.Git save
+
+* 1.保存
 
 ```
-test1
-<<<<<<< Updated upstream
-change2
-=======
-change 1.
->>>>>>> Stashed changes
+$ git stash save "ABC-602 front-end company UI"
+Saved working directory and index state On develop: A3S-602 front-end company UI
 
 ```
 
-#### 2.在 branch1 中做了修改，然后 stash the change , 然后切换到 branch2 , 做完操作后再回来这个 branch1, 拿取刚刚的修改.
-#### 3.在 branch1 中做了修改，然后 stash the change, 然后从 remote/branch1 pull code, 测试有 conflict 与没 conflict 的情况.
-#### 4.在 branch1 中做了修改，然后 stash the change, 然后从 branch2 merge code to branch, 测试有 conflict 与没 conflict 的情况.
+* 2.然后列表情况.
 
+```
+$ git stash list
+stash@{0}: On develop: ABC-602 front-end company UI
+stash@{1}: On develop: ABC-613
+stash@{2}: On develop: Try to improve the network logic.
+stash@{3}: On develop: Add agm/core component.
+
+```
+
+#### 3.应用缓存的 stash 
+
+```
+# 不删除 stash
+$ git stash apply stash@{1}
+
+```
+
+#### 4.移除 stash
+
+```
+$ git stash list
+stash@{0}: On develop: ABC-602 front-end company UI
+stash@{1}: On develop: ABC-613
+stash@{2}: On develop: Try to improve the network logic.
+stash@{3}: On develop: Add agm/core component.
+
+$ git stash drop stash@{1}
+Dropped stash@{1} (c68cea2c0f6e246ac6c8021ef512516491960df9)
+
+$ git stash list
+stash@{0}: On develop: ABC-602 front-end company UI
+stash@{1}: On develop: Try to improve the network logic.
+stash@{2}: On develop: Add agm/core component.
+
+```
 
 ## 2.Git 
 
