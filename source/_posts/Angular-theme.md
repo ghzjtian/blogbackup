@@ -12,25 +12,25 @@ date: 2020-06-01 17:46:19
 
 <!-- more -->
 
-## 1.参考
-## 2.自定义一个简单的主题
-## 3.新增特殊情况下的主题
-## 4.黑白主题的切换.
-## 5.自定义多一种颜色
-## 6.多个主题的切换.
-## 7.自定义文字排版
+## [1.参考](#references)
+## [2.自定义一个简单的主题](#define-new-theme)
+## [3.新增特殊情况下的主题](#add-special-theme)
+## [4.黑白主题的切换](#light-dark-theme-switch)
+## [5.自定义多一种颜色](#define-new-color)
+## [6.多个主题的切换](#multi-theme-switch)
+## [7.自定义文字排版](#custom-typography)
 
 ***
 ***
 ***
 
-## 1.参考
+## 1.参考<a name="references"/>
 * 1.[https://www.positronx.io/create-angular-material-8-custom-theme/](https://www.positronx.io/create-angular-material-8-custom-theme/)
 * 2.[设置 Angular Material 应用的主题](https://material.angular.cn/guide/theming)
 * 3.[Material COLOR TOOL](https://material.io/resources/color/)
 
 
-## 2.自定义一个简单的主题
+## 2.自定义一个简单的主题<a name="define-new-theme"/>
 
 #### 1.新建一个 `custom-material-theme.scss` 文件，写入自定义的主题颜色
 
@@ -152,7 +152,7 @@ $mat-custom-green: (
 
 
 
-## 3.新增特殊情况下的主题
+## 3.新增特殊情况下的主题<a name="add-special-theme"/>
 
 * 1.在 `custom-material-theme.scss` 下添加以下代码
 
@@ -177,7 +177,7 @@ $mat-custom-green: (
 
 
 
-## 4.黑白主题的切换.
+## 4.黑白主题的切换.<a name="light-dark-theme-switch"/>
 * 1.[Automatic Dark Mode Detection in Angular Material](https://medium.com/@PhilippKief/automatic-dark-mode-detection-in-angular-material-8342917885a0)
 * 2.[How to implement dark / light mode in Angular Material with prefers-color-scheme](https://medium.com/@svenbudak/how-to-implement-dark-light-mode-in-angular-mateiral-with-prefers-color-scheme-ce3e980e2ea5)
 
@@ -185,11 +185,12 @@ $mat-custom-green: (
 
 
 
-## 5.自定义多一种颜色
+## 5.自定义多一种颜色<a name="define-new-color"/>
 
 #### 1.参考
 
 * 1.[angular material design - add custom button color](https://stackoverflow.com/a/48015134/5237440)
+* 2.[Stackblitz: tian-angular-button-style](https://stackblitz.com/edit/tian-angular-button-style?embed=1&file=app/button-types-example.css)
 
 > (除了 `primary/accent/warn` 外.)
 
@@ -199,11 +200,48 @@ $mat-custom-green: (
 ```
 // 定义
 @mixin success-palette {
-  .mat-success {
-    background-color: green ;
-    color: #fff ;
-  }
+	.mat-button,
+	.mat-stroked-button,
+	.mat-icon-button{
+	  &.mat-success {
+	    color: #155724;
+	  }
+	}
+	.mat-raised-button,
+	.mat-flat-button,
+	.mat-fab,
+	.mat-mini-fab{
+	  &.mat-success{
+	    color: #f0fff3;
+	    background-color: #155724;
+	  }
+	}
 }
+
+    // When is Disable
+  $default-disable-bg-color: rgba(0,0,0,.12);
+
+  .mat-button,
+  .mat-stroked-button,
+  .mat-icon-button{
+    &.mat-success[disabled]{
+      color: $default-disable-bg-color;
+    }
+  }
+  .mat-raised-button,
+  .mat-flat-button,
+  .mat-fab,
+  .mat-mini-fab{
+    &.mat-success[disabled]{
+        color: rgba(0,0,0,.26);
+        background-color: $default-disable-bg-color;
+        background-image: linear-gradient($default-disable-bg-color, $default-disable-bg-color);
+    }
+  }
+
+```
+
+```
 
 // 导入
 @include success-palette;
@@ -239,12 +277,12 @@ $mat-custom-green: (
 
 
 
-## 6.多个主题的切换.
+## 6.多个主题的切换.<a name="multi-theme-switch"/>
 * 1.[Dynamic themes in Angular Material](https://medium.com/grensesnittet/dynamic-themes-in-angular-material-b6dc0c88dfd7)
 * 2.[Theme Change Demo](https://angular-material-switch-themes-by-toggle.stackblitz.io)
 
 
-## 7.自定义文字排版
+## 7.自定义文字排版<a name="custom-typography"/>
 * 1.[使用 Angular Material 的主题体系为自定义组件应用主题](https://material.angular.cn/guide/theming-your-components)
 * 2.[Angular Material 的排版](https://material.angular.cn/guide/typography)
 
