@@ -11,6 +11,14 @@ date: 2020-06-08 17:46:19
 <!-- more -->
 
 ## 1.MongoDB 
+## 2.C# 中使用 MongoDB
+
+
+***
+***
+***
+
+## 1.MongoDB 
 
 * 1.[The MongoDB 4.2 Manual](https://docs.mongodb.com/manual/#the-mongodb-version-manual)
 * 2.[mongodb用户创建以及权限控制](https://www.jianshu.com/p/62736bff7e2e)
@@ -121,5 +129,18 @@ security:
     authorization: enabled
 
 ```
+
+***
+
+## 2.C# 中使用 MongoDB
+
+* 1.[MongoDB Driver Quick Tour](https://mongodb.github.io/mongo-csharp-driver/2.10/getting_started/quick_tour/)
+* 2.[使用 ASP.NET Core 和 MongoDB 创建 Web API](https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-3.1&tabs=visual-studio-mac#create-the-aspnet-core-web-api-project)
+
+
+## 3.全文索引
+* 1.[MongoDB全文索引](https://www.jianshu.com/p/f30a8088b73f)
+* 2.[MongoDB Indexes](https://docs.mongodb.com/manual/indexes/#create-an-index)
+
 
 

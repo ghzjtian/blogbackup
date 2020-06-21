@@ -18,6 +18,7 @@ date: 2018-09-04 17:46:19
 ### [4.相关的软件](#related_software)
 ### [5.相关端口被屏蔽](#related_port_shield)
 ### [6.客户端设置的分享](#share_settings)
+### [7.Mac下共享ShadowsocksX-NG 给手机](#share_to_phone)
 
 
 ***
@@ -105,5 +106,15 @@ cat /proc/sys/net/ipv4/tcp_available_congestion_control 看看里面有没有 bb
 
 
 
+***
+
+### 7.Mac下共享ShadowsocksX-NG 给手机<a name="share_to_phone"/>
+
+* 1.参考: [7.Mac下共享ShadowsocksX-NG 给手机](https://www.jibing57.com/2019/03/24/share-ShadowsocksX-NG-to-iOS/)
 
 
+##### 1.打开小飞机的“偏好设置”，切换到HTTP一栏，其中的HTTP代理监听地址默认是127.0.0.1，将其改成0.0.0.0。保留默认的1087或改为自己想要设置的端口，并勾选“开启HTTP代理服务器”。
+##### 2.Phone连接到和Mac相同的局域网，然后在“无线局域网”中设置HTTP代理。
+* 1.地址填写 电脑的地址
+* 2.端口填写 1087.
+* 3.用浏览器访问外网，测试一下效果.
