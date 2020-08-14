@@ -105,7 +105,17 @@ git tag
 git tag -a test/frontend/v1.5.2.90 -m "Update front-end version to v1.5.2.90"
 ```
 
-##### 3.从其它分支选择指定的 commit 到当前分支中
+##### 3.上传 tag 到远程库
+
+```
+// 推送一个
+git push origin v1.5
+推送全部
+git push origin --tags
+```
+
+
+## 3.从其它分支选择指定的 commit 到当前分支中
 
 * 1.参考:
 	* [git cherry-pick 教程](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
@@ -123,7 +133,7 @@ git cherry-pick <HashA> <HashB>
 
 
 
-
+git tag -a test/frontend/v1.5.3.93 -m "Update front-end version to v1.5.3.93"
 
 
 

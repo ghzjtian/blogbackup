@@ -15,6 +15,8 @@ date: 2020-04-30 17:46:19
 ## 2.编写易于阅读的代码
 ## 3.高效的 Angular 程序编写
 ## 4.属性的命名
+## 5.方法的命名
+## 6.类的命名
 
 ***
 ***
@@ -164,6 +166,29 @@ const newFruits = fruits.map(fruit => {
 });
 ```
 
+
+## 5.方法的命名
+* 1.click 点击事件
+
+```
+(click)="onCancelClick()"
+(click)="onSaveClick()"
+```
+
+
+## 6.类的命名
+#### 1.Model
+
+> 参考 Angular [`英雄指南` ](https://angular.cn/tutorial) 中 Model 的命名规则.
+
+* 1.文件名: `hero.model.ts`, 类名为 `Hero`, 如
+
+```
+export interface Hero {
+  id: number;
+  name: string;
+}
+```
 
 
 

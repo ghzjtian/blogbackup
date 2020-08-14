@@ -18,8 +18,10 @@ date: 2020-06-13 17:46:19
 ## 6.Build 的脚本
 ## 7.常用的插件
 ## 8.过程及结果通知
-
-## 9.自动打包 `Xamarin.Android` 项目
+## 9.用户管理
+## 10.自动打包 `Xamarin.Android` 项目
+## 11.打包 `Xamarin.iOS` 项目
+ 
 
 ***
 ***
@@ -29,12 +31,15 @@ date: 2020-06-13 17:46:19
 ## 1.参考
 * 1.[Jenkins](https://www.jenkins.io/)
 * 2.[Using Jenkins with Xamarin](https://docs.microsoft.com/en-us/xamarin/tools/ci/jenkins-walkthrough)
+* 3.[Save Jenkins configuration](https://stackoverflow.com/questions/54192905/how-to-save-jenkins-configuration)
+* 4.[Login Credentials Brute Force](https://issues.jenkins-ci.org/browse/JENKINS-30107)
 
 ## 2.在 Mac mini 上安装 Jenkins
 #### 1.下载安装
 
 > [1.Homebrew Installer](https://www.jenkins.io/download/lts/macos/)
 > [2.How to Stop, Restart Jenkins - Common URL options](https://damien.co/general/how-to-start-stop-restart-or-reload-jenkins-mac-osx-8022/)
+> [3.Update Jenkins from a war file](https://stackoverflow.com/questions/11062335/update-jenkins-from-a-war-file)
 
 * 1.使用 brew 下载
 
@@ -76,8 +81,24 @@ reload to reload the configuration
 /usr/local/opt/jenkins-lts/homebrew.mxcl.jenkins-lts.plist
 
 任务文件路径:  ~/.jenkins/jobs/[JOB NAME]
+任务配置文件路径:  ~/.jenkins/jobs/[JOB NAME]/config.xml
 项目文件路径: ~/.jenkins/workspace
 ```
+
+##### 3.更新
+* 1.在 `Manage Jenkins -> System Information` 中可以看到 `jenkins.war` 的文件的路径 `executable-war`，如这里为: 
+
+```
+System Properties
+Name  			Value   
+awt.toolkit	sun.lwawt.macosx.LWCToolkit
+BUILD_TIMESTAMP	2020-07-06_02:30:05_CST
+executable-war	/usr/local/Cellar/jenkins-lts/2.204.1/libexec/jenkins.war
+```
+* 2.在搭建的 `Jenkins Server` 中下载新版 `jenkins.war` 包.
+* 3.停止 Jenkins: `brew services stop jenkins-lts`
+* 4.用新下载的 `jenkins.war` 替换 `/usr/local/Cellar/jenkins-lts/2.204.1/libexec/jenkins.war`
+* 5.重启 Jenkins: `brew services start jenkins-lts`
 
 ## 3.设置 Jenkins 中 Shell 的 PATH
 
@@ -152,6 +173,14 @@ echo $PATH
 #### 3.[Workspace Cleanup](https://plugins.jenkins.io/ws-cleanup/)
 * 1.在每次 Build 前就 Clean 整个项目.
 
+#### 4.Environment Injector
+* 1.安全地插入 password 等等敏感的数据
+
+#### 5.Delivery Pipeline
+* 1.可视化 任务管道传递
+
+#### 6.Role-based Authorization
+* 1.角色权限管理
 
 ## 8.过程及结果通知
 
@@ -198,7 +227,39 @@ From: Mac mini's Jenkins server <$BUILD_TIMESTAMP>
 ```
 
 
-## 9.自动打包 `Xamarin.Android` 项目
+
+## 9.用户管理
+
+> 需要 [`Matrix Authorization Strategy`](https://plugins.jenkins.io/matrix-auth/) 插件
+
+#### 1.参考
+* 1.[A way to restrict permissions to a user per individual job in jenkins](https://www.edureka.co/community/47822/there-restrict-permissions-user-per-individual-job-jenkins)
+* 2.[Standard Security Setup(wiki.jenkins.io)](https://wiki.jenkins.io/display/jenkins/standard+security+setup)
+* 3.[How to Reset Jenkins Admin users Password](http://abhijitkakade.com/2019/06/how-to-reset-jenkins-admin-users-password/)
+
+#### 2.具体操作
+
+
+* 1.From the jenkins dashboard,click on Manage Jenkins.
+
+* 2.under Manage jenkins->Configure Global Security->select Enable security.
+
+* 3.Under the Authorization section, select the "Project-based Matrix Authorization Strategy"
+
+* 4.Add the particular user and assign the appropriate permissions.(用户必须在这里有 `Overall -> Read` 的权限，否则在子项目配置的权限也会没有效果.)
+
+* 5.And then to assign Job specific permissions :
+
+	* 1.Go to the job (say job1) for which you need to assign permissions.
+	
+	* 2.Click Configure->under the general tab->Enable Project-based Security.
+	
+	* 3.Add the particular user (say user1) and assign the required permissions.
+
+
+
+
+## 10.自动打包 `Xamarin.Android` 项目
 
 #### 0.前期准备
 
@@ -207,8 +268,8 @@ From: Mac mini's Jenkins server <$BUILD_TIMESTAMP>
 	* 1.因为打包后生成的 APK 包需要附上版本号，要读取 `AndroidManifest.xml` 文件才能完成这个操作. 
 	* 2.安装: `brew install xmlstarlet`
 * 2.使用方法
-		* 1.[Extract XML Value in bash script](https://stackoverflow.com/a/17333937/5237440)
-		* 2.[XmlStarlet Command Line XML Toolkit User's Guide](http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html)
+	* 1.[Extract XML Value in bash script](https://stackoverflow.com/a/17333937/5237440)
+	* 2.[XmlStarlet Command Line XML Toolkit User's Guide](http://xmlstar.sourceforge.net/doc/UG/xmlstarlet-ug.html)
 
 * 3.例子
 
@@ -234,6 +295,36 @@ $ xmlstarlet sel -t -v "//@android:versionCode" input.xml
 
 $ xmlstarlet sel -t -v "//@ve:vCenterId" input.xml
 // Output: centerID
+
+```
+
+##### 2.把 zipalign 添加到个人目录的环境变量中
+
+> Android 打包需要用到的工具.
+
+###### 1.参考
+* 1.[Zipalign - Command not found - MAC terminal](https://stackoverflow.com/a/55135196/5237440)
+
+###### 2.配置 zipalign 环境
+
+```
+// 查找 zipalign 位置
+$ find ~/Library/Developer/Xamarin -name "zipalign"
+
+// 把 zipalign 放置到 个人环境目录下
+$ echo "export PATH=\$PATH:~/Library/Developer/Xamarin/android-sdk-macosx/build-tools/29.0.2" >> ~/.bash_profile && . ~/.bash_profile
+
+// 测试效果
+$ zipalign
+
+```
+
+###### 3.实际效果
+```
+// 模板
+zipalign -f -v 4 yourSigned.apk yourFinaleApk
+
+zipalign -f -v 4 $WORKSPACE/BLE_APP.Android/Bin/Release/com.glb.BLE_APP-Signed.apk $WORKSPACE/BLE_APP.Android/Bin/Release/finalApp.apk
 
 ```
 
@@ -322,38 +413,23 @@ for environment in "${Environments[@]}"
 
 ```
 
-
-
-## 10.用户管理
-
-> 需要 [`Matrix Authorization Strategy`](https://plugins.jenkins.io/matrix-auth/) 插件
+## 11.打包 `Xamarin.iOS` 项目
 
 #### 1.参考
-* 1.[A way to restrict permissions to a user per individual job in jenkins](https://www.edureka.co/community/47822/there-restrict-permissions-user-per-individual-job-jenkins)
-* 2.[Standard Security Setup(wiki.jenkins.io)](https://wiki.jenkins.io/display/jenkins/standard+security+setup)
-* 3.[How to Reset Jenkins Admin users Password](http://abhijitkakade.com/2019/06/how-to-reset-jenkins-admin-users-password/)
+* 1.[IPA Support in Xamarin.iOS](https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/ipa-support?tabs=macos)
 
-#### 2.具体操作
+#### 2.过程
 
-
-* 1.From the jenkins dashboard,click on Manage Jenkins.
-
-* 2.under Manage jenkins->Configure Global Security->select Enable security.
-
-* 3.Under the Authorization section, select the "Project-based Matrix Authorization Strategy"
-
-* 4.Add the particular user and assign the appropriate permissions.(用户必须在这里有 `Overall -> Read` 的权限，否则在子项目配置的权限也会没有效果.)
-
-* 5.And then to assign Job specific permissions :
-
-	* 1.Go to the job (say job1) for which you need to assign permissions.
-	
-	* 2.Click Configure->under the general tab->Enable Project-based Security.
-	
-	* 3.Add the particular user (say user1) and assign the required permissions.
+```
+msbuild /p:Configuration="APP.iOS - Develop" /p:Platform="iPhone" /p:IpaPackageDir="/Users/user/Desktop" /p:BuildIpa=true /t:Build Globe.IoT.App.GreenGuide.iOS.csproj
+```
 
 
 
+
+
+
+/Users/glb_gz/Documents/Xamarin_Workplace/ggmowerapp/MowerGG/MowerGG.iOS/Globe.IoT.App.GreenGuide.iOS.csproj
 
 
 
