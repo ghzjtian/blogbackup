@@ -18,6 +18,7 @@ date: 2017-12-19 18:46:19
 ## [3.Mysql 相关](#mysql_server)
 ## [4.MAMP搭建](#mamp_install)
 ## [5.Web(Nginx) 服务器](#web_server_nginx)
+## [6.解压文件](#unrar_folder)
 
 
 ***
@@ -201,3 +202,40 @@ sudo nginx
 sudo nginx -s stop
 
 ```
+
+## 6.命令行解压
+
+## 1.参考
+* 1.[How can I extract .rar files on the Mac?](https://superuser.com/questions/52124/how-can-i-extract-rar-files-on-the-mac#comment2010675_52126)
+* 2.[Unzip fail when zip contains chinese char on macOS 10.13](https://github.com/CocoaPods/CocoaPods/issues/7711)
+
+
+## 2.解压
+* 1.unrar `.rar`文件
+
+```
+Using Homebrew, in a terminal type:
+
+brew install unrar
+
+to use it just navigate to your file and type
+
+unrar x <filename>
+
+Or list files via unrar l archive.rar and extract single file: unrar e archive.rar folder/file.exe desired_location/
+```
+
+* 2.unzip `zip` 文件
+
+```
+unzip xxx.zip
+
+or 
+
+ditto -V -x -k --sequesterRsrc --rsrc FILENAME.ZIP DESTINATIONDIRECTORY
+```
+
+
+
+
+ditto -V -x -k --sequesterRsrc --rsrc 课时-3.zip ./ditto/

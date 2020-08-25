@@ -35,7 +35,7 @@ stash@{2}: On develop: Add agm/core component.
 
 ```
 
-#### 2.Git save
+#### 2.Git stash save
 
 * 1.保存
 
