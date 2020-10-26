@@ -21,7 +21,7 @@ date: 2020-04-01 17:46:19
 * 1.[Git scm](https://git-scm.com/)
 * 2.[git-stash用法小结](https://www.cnblogs.com/tocy/p/git-stash-reference.html)
 * 3.[GUI Clients](https://git-scm.com/download/gui/mac)
-
+* 4.[git clean用法](https://www.cnblogs.com/lsgxeva/p/8540476.html)
 
 ## 1.Git stash
 
@@ -61,6 +61,8 @@ stash@{3}: On develop: Add agm/core component.
 ```
 # 不删除 stash
 $ git stash apply stash@{1}
+# 删除 stash
+$ git stash pop
 
 ```
 

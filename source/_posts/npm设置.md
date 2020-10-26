@@ -13,6 +13,7 @@ date: 2019-09-05 17:46:19
 ## 1.参考
 * 1.[淘宝 NPM 镜像](https://npm.taobao.org)
 * 2.[npm 淘宝镜像配置](https://gist.github.com/52cik/c1de8926e20971f415dd)
+* 3.[配置cnpm](http://blog.pgyjz.cn/2019/09/05/npm%E8%AE%BE%E7%BD%AE/)
 
 ## 2.过程
 

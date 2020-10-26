@@ -236,6 +236,3 @@ ditto -V -x -k --sequesterRsrc --rsrc FILENAME.ZIP DESTINATIONDIRECTORY
 ```
 
 
-
-
-ditto -V -x -k --sequesterRsrc --rsrc 课时-3.zip ./ditto/

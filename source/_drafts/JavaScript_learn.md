@@ -10,14 +10,23 @@ date: 2020-04-25 17:46:19
 
 <!-- more -->
 
+# [1.参考](#references)
+# [2.关键词的理解](#key_word)
+# [3.typeof](#typeof)
+# [4.Regular Expressions](#re)
 
-# 1.参考
+
+***
+***
+***
+
+# 1.参考<a name="references"/>
 * 1.[W3School JavaScript Tutorial](https://www.w3schools.com/js/default.asp)
+* 2.[JavaScript Data Types(typeof)](https://www.w3schools.com/js/js_datatypes.asp)
 
+# 2.关键词的理解<a name="key_word"/>
 
-## 2.关键词的理解
-
-#### 1.[`var` 与 `let` 的不同](https://www.w3schools.com/js/js_let.asp)
+## 1.[`var` 与 `let` 的不同](https://www.w3schools.com/js/js_let.asp)
 
 * 1.作用域
 
@@ -58,4 +67,64 @@ for (let i = 0; i < 10; i++) {
 ```
 
 * 2.重复定义, `let` 不允许重复定义(也不允许与 `var` 搭配重复定义)， `var` 允许重复定义.否则出现 `Uncaught SyntaxError: Identifier 'x' has already been declared` 错误.
+
+
+# 3.typeof<a name="typeof"/>
+
+## 1.typeof 与 string 比较
+
+```
+const stringNull = null;
+console.log(typeof stringNull == "string"); // false
+
+const stringUndefined = undefined;
+console.log(typeof stringUndefined == "string");  // false
+
+const stringEmpty = "";
+console.log(typeof stringEmpty == "string");  //true
+console.log( stringEmpty ? "Not empty" : "empty"); // empty
+
+const stringValue = "Test";
+console.log(typeof stringValue == "string");  // true
+
+const numberValue = 123;
+console.log(typeof numberValue == "string");  // false
+
+```
+
+***
+
+# 4.Regular Expressions<a name="re"/>
+
+## 1.参考
+* 1.[String.prototype.match()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+
+## 2.match
+
+```
+const firmwareVersion: string = '717.31.1593162660';
+var firmRe =  /(\d+)(\.\d+)*/i;
+var firmFound = firmwareVersion.match(firmRe);
+console.log(firmFound);
+
+if (firmFound ) {
+    console.log(typeof firmFound[1] == "string"); // true
+    console.log(`main version: ${firmFound[1]}`); // main version: 717
+
+/**
+ * Output:
+ *  [0: "717.31.1593162660"
+    1: "717"
+    2: ".1593162660"
+    groups: undefined
+    index: 0
+    input: "717.31.1593162660"
+    length: 3]
+ * 
+ */
+}
+```
+
+
+
 
