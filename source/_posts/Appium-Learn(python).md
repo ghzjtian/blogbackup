@@ -1,11 +1,11 @@
 ---
-title: Selenium 自动化测试(python3)
+title: Appium 自动化测试(python3)
 tags: [auto-test]
 categories: [auto-test]
 date: 2020-07-11 17:46:19
 ---
 
-> Selenium 环境的搭建及简单的例子(Python)
+> Appium 环境的搭建及简单的例子(Python3)
 
 <!-- more -->
 
