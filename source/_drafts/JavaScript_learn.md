@@ -83,6 +83,13 @@ console.log(typeof stringUndefined == "string");  // false
 const stringEmpty = "";
 console.log(typeof stringEmpty == "string");  //true
 console.log( stringEmpty ? "Not empty" : "empty"); // empty
+// Output: is not valid
+if (typeof stringEmpty == "string" && stringEmpty) {
+  console.log("is valid");
+} else {
+  console.log("is not valid");
+}
+
 
 const stringValue = "Test";
 console.log(typeof stringValue == "string");  // true

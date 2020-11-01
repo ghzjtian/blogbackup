@@ -58,6 +58,7 @@ prefix = "/usr/local"
 ```
 
 ## 3.错误处理
-* 1.
+#### 1.Angular 运行命令` ng test `, [出现` jasminerequire not defined `](解决 ng test jasminerequire not defined问题)
+* 1.删除 `node_modules` 文件夹，然后运行以下命令 `npm install --registry=https://registry.npm.taobao.org`	
 
 
