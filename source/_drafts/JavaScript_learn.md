@@ -14,7 +14,7 @@ date: 2020-04-25 17:46:19
 # [2.关键词的理解](#key_word)
 # [3.typeof](#typeof)
 # [4.Regular Expressions](#re)
-
+# [5.Array](#array)
 
 ***
 ***
@@ -132,6 +132,25 @@ if (firmFound ) {
 }
 ```
 
+# 5.Array <a name="array"/> 
 
+```
+let notArr = undefined;
 
+console.log(Array.isArray(notArr));// false
+
+let notArr2 = null;
+
+console.log(Array.isArray(notArr2));// false
+
+let notArr3 = 'abc';
+
+console.log(Array.isArray(notArr3));// false
+
+let aArr = [];
+
+console.log(Array.isArray(aArr)); // true
+
+console.log(aArr.length == 0); // true
+```
 

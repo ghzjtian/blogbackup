@@ -6,7 +6,7 @@ date: 2020-05-13 17:46:19
 ---
 
 
-> CSS 学习资料记录
+> Web 学习资料记录
 
 <!-- more -->
 
@@ -24,3 +24,6 @@ date: 2020-05-13 17:46:19
 * 2.[Lodashjs 一致性、模块化、高性能的 JavaScript 实用工具库](https://www.lodashjs.com/)
 
 
+## 4.打包工具
+* 1.[parcel](https://parceljs.org/)
+* 2.[webpack](https://webpack.js.org/)

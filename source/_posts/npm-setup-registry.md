@@ -1,5 +1,5 @@
 ---
-title: NodePackageManager(NPM) 的设置
+title: NodePackageManager(NPM) 的 registry 设置
 tags: [node]
 categories: [node]
 date: 2019-09-05 17:46:19
@@ -9,13 +9,20 @@ date: 2019-09-05 17:46:19
 
 <!-- more -->
 
+## [1.参考](#references)
+## [2.过程](#steps)
+## [3.错误处理](#error_process)
 
-## 1.参考
+***
+***
+***
+
+## 1.参考<a name="references"/>
 * 1.[淘宝 NPM 镜像](https://npm.taobao.org)
 * 2.[npm 淘宝镜像配置](https://gist.github.com/52cik/c1de8926e20971f415dd)
 * 3.[配置cnpm](http://blog.pgyjz.cn/2019/09/05/npm%E8%AE%BE%E7%BD%AE/)
 
-## 2.过程
+## 2.过程<a name="steps"/>
 
 * 1.切换源(官方源 <-> 淘宝源)
 
@@ -57,8 +64,11 @@ prefix = "/usr/local"
 ; "npm config ls -l" to show all defaults.
 ```
 
-## 3.错误处理
-#### 1.Angular 运行命令` ng test `, [出现` jasminerequire not defined `](解决 ng test jasminerequire not defined问题)
-* 1.删除 `node_modules` 文件夹，然后运行以下命令 `npm install --registry=https://registry.npm.taobao.org`	
+## 3.错误处理<a name="error_process"/>
 
+#### 1.Angular 运行命令` ng test `, [出现` jasminerequire not defined `](解决 ng test jasminerequire not defined问题)
+* 1.删除 `node_modules` 文件夹，然后运行以下命令 `npm install --registry=https://registry.npm.taobao.org`;
+
+
+#### 2.使用淘宝镜像的后遗症及解决方法: [npm ERR! Unexpected end of JSON input while parsing near '](https://github.com/vuejs-templates/webpack/issues/990#issuecomment-343736884)
 
