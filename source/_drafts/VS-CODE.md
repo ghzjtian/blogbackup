@@ -37,6 +37,7 @@ date: 2020-08-11 17:46:19
 * 11.[TSLint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin&wt.mc_id=devto-blog-jopapa)
 * 12.[Angular Follow Selector](https://marketplace.visualstudio.com/items?itemName=sanderledegen.angular-follow-selector)
 * 13.[JavaScript (ES6) code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
+* 14.[johnpapa.angular2](https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2)
 
 
 ## 3.用 VS Code 开发 .Net Core 项目
